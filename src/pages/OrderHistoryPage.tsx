@@ -7,7 +7,7 @@ import type { Order } from '../types'
 export default function OrderHistoryPage() {
   const [orders, setOrders] = useState<Order[]>([])
   const [filterProfile, setFilterProfile] = useState<string | null>(null)
-  const { profile, profiles } = useAuth()
+  const { profiles } = useAuth()
 
   useEffect(() => {
     let query = supabase
