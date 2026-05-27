@@ -1,16 +1,15 @@
 import { useRef, useState } from 'react'
-import { supabase } from '../lib/supabase'
 
 interface Props {
   imageUrl: string
   onChange: (url: string) => void
 }
 
-function compressImage(file: File): Promise<Blob> {
+function fileToBase64(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
     const img = new Image()
     img.onload = () => {
-      const maxSize = 800
+      const maxSize = 600
       let { width, height } = img
       if (width > maxSize || height > maxSize) {
         if (width > height) {
@@ -26,10 +25,7 @@ function compressImage(file: File): Promise<Blob> {
       canvas.height = height
       const ctx = canvas.getContext('2d')!
       ctx.drawImage(img, 0, 0, width, height)
-      canvas.toBlob((blob) => {
-        if (blob) resolve(blob)
-        else reject(new Error('压缩失败'))
-      }, 'image/jpeg', 0.7)
+      resolve(canvas.toDataURL('image/jpeg', 0.6))
     }
     img.onerror = () => reject(new Error('图片加载失败'))
     img.src = URL.createObjectURL(file)
@@ -46,24 +42,10 @@ export default function ImageUpload({ imageUrl, onChange }: Props) {
 
     setUploading(true)
     try {
-      const compressed = await compressImage(file)
-      const fileName = `${Date.now()}.jpg`
-      const { error } = await supabase.storage
-        .from('dishes')
-        .upload(fileName, compressed)
-
-      if (error) {
-        alert('上传失败: ' + error.message)
-        return
-      }
-
-      const { data: { publicUrl } } = supabase.storage
-        .from('dishes')
-        .getPublicUrl(fileName)
-
-      onChange(publicUrl)
+      const base64 = await fileToBase64(file)
+      onChange(base64)
     } catch (err) {
-      alert('上传失败: ' + (err instanceof Error ? err.message : '未知错误'))
+      alert('图片处理失败')
     } finally {
       setUploading(false)
     }
@@ -79,7 +61,7 @@ export default function ImageUpload({ imageUrl, onChange }: Props) {
       ) : (
         <div className="w-full h-full flex flex-col items-center justify-center text-gray-400">
           <span className="text-3xl">📷</span>
-          <span className="text-sm mt-1">{uploading ? '压缩上传中...' : '点击上传图片'}</span>
+          <span className="text-sm mt-1">{uploading ? '压缩中...' : '点击上传图片'}</span>
         </div>
       )}
       <input
