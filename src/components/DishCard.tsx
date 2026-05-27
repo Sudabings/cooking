@@ -14,6 +14,7 @@ export default function DishCard({ dish, onAdd }: Props) {
             src={dish.image_url}
             alt={dish.name}
             className="w-full h-full object-cover"
+            loading="lazy"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-4xl text-gray-300">

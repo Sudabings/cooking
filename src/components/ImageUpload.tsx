@@ -9,7 +9,7 @@ function fileToBase64(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
     const img = new Image()
     img.onload = () => {
-      const maxSize = 600
+      const maxSize = 360
       let { width, height } = img
       if (width > maxSize || height > maxSize) {
         if (width > height) {
