@@ -15,13 +15,14 @@ export default function ImageUpload({ imageUrl, onChange }: Props) {
     if (!file) return
 
     setUploading(true)
-    const fileName = `${Date.now()}-${file.name}`
+    const ext = file.name.split('.').pop() || 'png'
+    const fileName = `${Date.now()}.${ext}`
     const { error } = await supabase.storage
       .from('dishes')
       .upload(fileName, file)
 
     if (error) {
-      alert('上传失败')
+      alert('上传失败: ' + error.message)
       setUploading(false)
       return
     }
