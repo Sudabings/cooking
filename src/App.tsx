@@ -7,8 +7,8 @@ import HomePage from './pages/HomePage'
 import OrderDetailPage from './pages/OrderDetailPage'
 import OrderHistoryPage from './pages/OrderHistoryPage'
 import CartPage from './pages/CartPage'
-function DishManagePage() { return <div>Admin Dishes</div> }
-function CategoryManagePage() { return <div>Admin Categories</div> }
+import DishManagePage from './pages/admin/DishManagePage'
+import CategoryManagePage from './pages/admin/CategoryManagePage'
 
 function AppRoutes() {
   const { profile } = useAuth()
