@@ -4,9 +4,9 @@ import { CartProvider } from './context/CartContext'
 import Layout from './components/Layout'
 import LoginPage from './pages/LoginPage'
 import HomePage from './pages/HomePage'
+import OrderDetailPage from './pages/OrderDetailPage'
+import OrderHistoryPage from './pages/OrderHistoryPage'
 function CartPage() { return <div>Cart</div> }
-function OrderHistoryPage() { return <div>Orders</div> }
-function OrderDetailPage() { return <div>Order Detail</div> }
 function DishManagePage() { return <div>Admin Dishes</div> }
 function CategoryManagePage() { return <div>Admin Categories</div> }
 
