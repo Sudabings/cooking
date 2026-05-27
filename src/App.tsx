@@ -2,9 +2,9 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider, useAuth } from './context/AuthContext'
 import { CartProvider } from './context/CartContext'
 import Layout from './components/Layout'
+import LoginPage from './pages/LoginPage'
 
 // Pages - will be created later, use lazy or placeholder for now
-function LoginPage() { return <div>Login</div> }
 function HomePage() { return <div>Home</div> }
 function CartPage() { return <div>Cart</div> }
 function OrderHistoryPage() { return <div>Orders</div> }
