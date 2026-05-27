@@ -3,9 +3,7 @@ import { AuthProvider, useAuth } from './context/AuthContext'
 import { CartProvider } from './context/CartContext'
 import Layout from './components/Layout'
 import LoginPage from './pages/LoginPage'
-
-// Pages - will be created later, use lazy or placeholder for now
-function HomePage() { return <div>Home</div> }
+import HomePage from './pages/HomePage'
 function CartPage() { return <div>Cart</div> }
 function OrderHistoryPage() { return <div>Orders</div> }
 function OrderDetailPage() { return <div>Order Detail</div> }
