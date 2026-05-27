@@ -6,7 +6,7 @@ import LoginPage from './pages/LoginPage'
 import HomePage from './pages/HomePage'
 import OrderDetailPage from './pages/OrderDetailPage'
 import OrderHistoryPage from './pages/OrderHistoryPage'
-function CartPage() { return <div>Cart</div> }
+import CartPage from './pages/CartPage'
 function DishManagePage() { return <div>Admin Dishes</div> }
 function CategoryManagePage() { return <div>Admin Categories</div> }
 
